@@ -1,7 +1,7 @@
 //plar starting position. canvas size 600x600, top left corner = 0,0
 
 var inputStates={};
-inputStates.zToggle = false;
+inputStates.zToggle = true;
 var playerX=300, playerY=550;
 var playerR=10;
 var playerSpeed = 10;
@@ -10,6 +10,7 @@ var playerBullets = [];
 var mapPosition = 0;
 var enemyArray = [];
 var gameStates = 0;
+var isoEnemyBullets=[];
 //var currentGameState = gameStates.homeScreen;
 // Inits
 window.onload = function init() {
@@ -168,6 +169,8 @@ function createEnemy(mapPosition){
     }
     */
 
+   createEnemyBullet(enemyArray, mapPosition);
+
     if (mapPosition%300==1){
         var creeper= new creep('simpleShooter', 200, 0, 7, 0, 1, true);
         enemyArray.push(creeper);
@@ -208,16 +211,7 @@ function createEnemy(mapPosition){
     }
 
 
-
-
-
-
-
-
-
-
-
-    createEnemyBullet(enemyArray, mapPosition);
+    
 
     /*
     if (mapPosition %100==1){
@@ -315,7 +309,7 @@ function drawEnemy(enemyArray){
         ctx.fill();        
         ctx.restore();
 
-        drawBullet(enemyArray[i].bulletArray);
+        drawBullet(isoEnemyBullets);
     }
 }
 
@@ -341,9 +335,9 @@ function creepCollision(hitArray, colliderArray){
     for (let i=0; i<colliderArray.length; i++){
         let collisionResult= collisionDetect(playerX, playerY, playerR, colliderArray[i].creepX, colliderArray[i].creepY, colliderArray[i].creepR);
         
-        for (let j=0; j<enemyArray[i].bulletArray.length;j++){
+        for (let j=0; j<isoEnemyBullets.length;j++){
             //enemyArray[i].bulletArray.push(enemyBullets);
-            let playerHitten= collisionDetect(playerX, playerY, playerR, enemyArray[i].bulletArray[j].posX, enemyArray[i].bulletArray[j].posY, enemyArray[i].bulletArray[j].r);
+            let playerHitten= collisionDetect(playerX, playerY, playerR, isoEnemyBullets[j].posX, isoEnemyBullets[j].posY, isoEnemyBullets[j].r);
             
             if (playerHitten == 1){
                 console.log('hit');
@@ -388,12 +382,14 @@ function creepCollision(hitArray, colliderArray){
             colliderArray.splice(i,1);
             i=i-1;
         }
-
-        
-        
-        
     }
 
+    for (let j=0; j<isoEnemyBullets.length; j++){
+        if (isoEnemyBullets[j].posY>610 || isoEnemyBullets[j].posX<-20 || isoEnemyBullets[j].posX>620){
+            isoEnemyBullets.splice(j,1);
+            j=j-1;
+        }
+    }
 }
 
 function gameHomescreen(){
@@ -467,6 +463,7 @@ function playerShoot(mapPosition){
     drawBullet(playerBullets);
 }
 
+
 class playerBullet{
     constructor (playerX, playerY, type){
         this.posX=playerX;
@@ -534,12 +531,37 @@ class enemyBullet{
 
 }
 
+class isoBullet{
+
+    constructor(enemyArrayI){
+
+        if (enemyArrayI.type == "simpleShooter"){ //straight down bullets
+            this.posX= enemyArrayI.creepX;
+            this.posY= enemyArrayI.creepY;
+            this.spdX = 0;
+            this.spdY = 10;
+            this.r = 5;
+        }
+    
+        else if (enemyArrayI.type == "dumb"){
+            this.posX= 0;
+            this.posY= 0;
+            this.spdX = 0;
+            this.spdY = 0;
+            this.r = 0;
+        }
+    
+        }
+
+}
+
+
 
 function createEnemyBullet(enemyArray, mapPosition){
     for (let i=0; i<enemyArray.length; i++){
         if (enemyArray[i].type == "simpleShooter" && mapPosition%50==1){
-            var enemyBullets = new enemyBullet(enemyArray[i]);
-            enemyArray[i].bulletArray.push(enemyBullets);
+            var oneEnemyBullet = new isoBullet(enemyArray[i]);
+            isoEnemyBullets.push(oneEnemyBullet);
 
         }
 
@@ -554,14 +576,15 @@ function enemyUpdates(enemyArray){
         enemyArray[i].move();
         //enemy bulets position updates, and creation?
         //for (let j=0; j)
-        for (let j=0; j<enemyArray[i].bulletArray.length; j++){
-            enemyArray[i].bulletArray[j].posX += enemyArray[i].bulletArray[j].spdX;
-            enemyArray[i].bulletArray[j].posY += enemyArray[i].bulletArray[j].spdY;
+    }
+    
+    if(isoEnemyBullets.length>0){
+        for (let j=0; j<isoEnemyBullets.length; j++){
+            isoEnemyBullets[j].posX += isoEnemyBullets[j].spdX;
+            isoEnemyBullets[j].posY += isoEnemyBullets[j].spdY;
 
         }
-
     }
-
 
 
 
