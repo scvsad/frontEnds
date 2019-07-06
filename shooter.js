@@ -178,13 +178,15 @@ function createEnemy(mapPosition){
         enemyArray.push(creeper);
     }
 
+    /*
     if (mapPosition%500==1){
         var creeper= new creep('simpleShooter', 250, 0, 7, 0, 0, true);
         enemyArray.push(creeper);
         var creeper= new creep('simpleShooter', 300, 0, 7, 0, 0, true);
         enemyArray.push(creeper);
     }
-
+    */
+   
     if (mapPosition%700==1){
         var creeper= new creep('dumb', 250, 0, 8, 1, 2, true);
         enemyArray.push(creeper);
@@ -257,24 +259,29 @@ class creep{
     }
 
     move() {
-        this.creepX += this.creepSpeedX;
-        this.creepY += this.creepSpeedY;
+        if (this.type =="simpleShooter"){
+            this.creepX += this.creepSpeedX;
+            this.creepY += this.creepSpeedY;
+            return;
+        }
 
-    }
-    
-    
-    addBullet(){
-        let bullet = new creepBullet(this.type)
-        this.bulletArray.push(bullet);
-    }
-
-    bulletMove(){
-        for (i; i<this.bullet.length;i++){
-        this.bullet += this.bulletspdX;
-        this.bulletY += this.bulletspdY;
+        if(this.type == "dumb"){
+            this.dumbMove();
+            return;
+        }
+        if(this.type = "b"){
+           // bTypeMove();
+           return;
         }
     }
     
+    dumbMove(){
+        this.creepX += parseInt(Math.sin(mapPosition/30));
+        this.creepY += this.creepSpeedY;
+    }
+
+    
+
 
 }
 
@@ -415,6 +422,7 @@ function gameReset(){
     playerY=550;
     mapPosition=1;
     playerScore=0;
+    isoEnemyBullets=[];
 }
 
 
@@ -445,7 +453,15 @@ function screenWindowDetect(){
         playerY =600-playerR;
     }
 
+    for (let i=0; i<playerBullets.length; i++){
+        if (playerBullets[i].posY<10){
+            playerBullets.splice(i,1);
+        }
+    }
+
 }
+
+
 
 function playerShoot(mapPosition){
     
