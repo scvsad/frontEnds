@@ -1,17 +1,22 @@
+html{
+    margin: 0;
+    padding: 0;
+}
+
 
 body{
+    font-family: helvetica, sans-serif;
     background-image: url(shooterbackground.jpeg);
 }
 
 
 
 header{
-    text-align: center;
-    height: 60px;
-    
+    text-align: center;    
     background-color: greenyellow;
-    opacity: 0.5;
-    
+    opacity: 0.8;
+    margin-top: 0px;
+
 
 }
 
@@ -19,22 +24,43 @@ header h1{
     /*background: transparent;*/
     margin-top: 10px;
     opacity: 1;
-    display: block;
-    
-    
+    display: block;   
     white-space: nowrap;
     /*overflow: hidden;*/
 }
 
+header nav{
+    display: flex;
+    flex-flow: row wrap;
+    width: 30%;
+    padding-left: 35%;
+}
 
+header nav button{
+    font-size: 20px;
+    flex: 1;
+    border: 0px;
+    background-color: greenyellow;
+}
 
 #webGame{
+    margin-top: 30px;
     text-align: center;
-    
+
+    flex-flow: row wrap;    
+}
+
+#webgame h1{
+    flex: 1;
+    background-color: white;
+    opacity: 0.5;
 }
 
 #shooterGame{
+    background-color: white;
+    opacity: 0.8;
     margin: auto;
-    border: 3px solid beige;
+    border: 3px solid azure;
     padding: 1px;
+
 }
