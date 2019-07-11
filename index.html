@@ -4,6 +4,7 @@
     <title>Welcome to Yizo</title> 
     <link rel='stylesheet' href='homepage.css'>
     <script src='shooter.js'></script>
+    <script src='tabChange.js'></script>
 
 </head>
 
@@ -11,19 +12,24 @@
     <header>
         <h1>TEMPORARY HOMEPAGE</h1>
         <nav class='tab'>
-            <button class="tabLinks" onclick='openSec(event,'webSec')'>Game Section</button>
-            <button class="tabLinks" onclick='openSec(event,'aboutSec')'>About me (Resume)</button>
-           
+            <button class="tabLinks" onclick="openSec(event,'webSec')">Game Section</button>
+            <button class="tabLinks" onclick="openSec(event,'aboutSec')">About me (Resume)</button>
         </nav>
     </header>
 
-    <section id='webGame'>
+    <div id="webSec" class="tabContent">
+        <section id='webGame'>
 
-        <canvas id='shooterGame' height=600 width=600></canvas>
+            <canvas id='shooterGame' height=600 width=600></canvas>
 
-    </section>
+        </section>
+    </div>
 
 
+    <div id="aboutSec" class="tabContent">
+        <p>About sec contents</p>
+    </div>
+    
     <section id='spaceHolder'>
         
     </section>

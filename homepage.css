@@ -3,6 +3,13 @@ html{
     padding: 0;
 }
 
+.tab{
+    overflow: hidden;
+}
+
+#aboutSec{
+    display: none;
+}
 
 body{
     font-family: helvetica, sans-serif;
@@ -40,7 +47,9 @@ header nav button{
     font-size: 20px;
     flex: 1;
     border: 0px;
-    background-color: greenyellow;
+    background-color: azure;
+    margin: 10px;
+    margin-bottom: 0px;
 }
 
 #webGame{
