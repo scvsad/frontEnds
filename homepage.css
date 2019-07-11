@@ -1,10 +1,35 @@
+body{
+    background-image: url(shooterbackground.jpeg);
+}
+
+
+
 header{
     text-align: center;
+    height: 60px;
+    
+    background-color: green;
+    opacity: 0.5;
+    
+
 }
+
+header h1{
+    /*background: transparent;*/
+    margin-top: 10px;
+    opacity: 1;
+    display: block;
+    
+    
+    white-space: nowrap;
+    /*overflow: hidden;*/
+}
+
+
 
 #webGame{
     text-align: center;
-
+    
 }
 
 #shooterGame{
