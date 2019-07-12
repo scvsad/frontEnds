@@ -9,9 +9,16 @@ var playerScore = 0;
 var playerBullets = [];
 var mapPosition = 0;
 var enemyArray = [];
-var gameStates = 0;
+var currentGameState = 0;
 var isoEnemyBullets=[];
-//var currentGameState = gameStates.homeScreen;
+
+let gameStateEnum = {
+    HOME_SCREEN : {description : "Home Screen"},
+    GAME_OVER : {description : "Game Over"},
+    RUNNING : {description : "Game Running"},
+    PAUSED : {description : "Game Paused"}
+}
+
 // Inits
 window.onload = function init() {
 
@@ -19,7 +26,7 @@ window.onload = function init() {
     w = canvas.width;
     h = canvas.height;
     ctx = canvas.getContext('2d');
-    gameStates = 0;
+    currentGameState = gameStateEnum.HOME_SCREEN;
 
     gameInitialize();
 
@@ -34,17 +41,17 @@ var mainLoop = function(time){
     //measureFPS(time);
     // Clear the canvas
  
-    switch (gameStates){
+    switch (currentGameState){
 
-        case 0:
+        case gameStateEnum.HOME_SCREEN:
             gameHomescreen();
             break;
         
-        case 2:
+        case gameStateEnum.GAME_OVER:
             gameOverscreen();
             break;
 
-        case 1:
+        case gameStateEnum.RUNNING:
             clearCanvas();
             playerControl(inputStates, playerSpeed);
             // Draw the monster
@@ -59,8 +66,15 @@ var mainLoop = function(time){
             creepCollision(playerBullets, enemyArray);
             screenWindowDetect();
             mapPosition += 1;
-            requestAnimationFrame(mainLoop);    
+            requestAnimationFrame(mainLoop);
 
+        case gameStateEnum.PAUSED:
+            //todo
+            break;
+
+        default:
+            gameHomescreen();
+            break;
         }
     
     //playerControl();
@@ -108,7 +122,7 @@ function gameInitialize(){
         
         else if (event.keyCode === 32) {
           //inputStates.space = false;
-          gameStates=1;
+          currentGameState = gameStateEnum.RUNNING;
         }
       }, false);
 
@@ -348,7 +362,7 @@ function creepCollision(hitArray, colliderArray){
             
             if (playerHitten == 1){
                 console.log('hit');
-                gameStates = 2;
+                currentGameState = gameStateEnum.GAME_OVER;
             }
             else if(playerHitten == 2){
                 playerScore +=1;
@@ -361,7 +375,7 @@ function creepCollision(hitArray, colliderArray){
 
         if (collisionResult == 1){
             console.log('hit');
-            gameStates = 2;
+            currentGameState = gameStateEnum.GAME_OVER;
         }
         else if(collisionResult == 2){
             playerScore +=1;
