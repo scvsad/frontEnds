@@ -13,14 +13,17 @@ html{
 
 body{
     font-family: helvetica, sans-serif;
-    background-image: url(shooterbackground.jpeg);
+    
 }
 
-
+a{
+    text-decoration: none;
+    background-color: beige;
+}
 
 header{
     text-align: center;    
-    background-color: greenyellow;
+    background-color: #cfe9ff;
     opacity: 0.8;
     margin-top: 0px;
 
@@ -47,9 +50,14 @@ header nav button{
     font-size: 20px;
     flex: 1;
     border: 0px;
-    background-color: azure;
+    border-block-style: fade;
+    background-color: #c7e4fc;
     margin: 10px;
     margin-bottom: 0px;
+}
+
+#webSec{
+    background-image: url(shooterbackground.jpeg);
 }
 
 #webGame{
