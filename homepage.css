@@ -8,16 +8,13 @@ html{
     overflow: hidden;
 }
 
-#aboutSec{
-    display: none;
-}
 
 body{
     font-family: helvetica, sans-serif;
     
 }
 
-a{
+a:link{
     text-decoration: none;
     background-color: beige;
 }
@@ -27,22 +24,22 @@ header{
     background-color: #cfe9ff;
     opacity: 0.8;
     margin-top: 0px;
-
+    min-width: 1000px;
 
 }
 
 header h1{
-    /*background: transparent;*/
+    
     margin-top: 10px;
     opacity: 1;
-    display: block;   
+    
     white-space: nowrap;
-    /*overflow: hidden;*/
+    
 }
 
 header nav{
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row;
     width: 30%;
     padding-left: 35%;
 }
@@ -51,21 +48,53 @@ header nav button{
     font-size: 20px;
     flex: 1;
     border: 0px;
-    border-block-style: fade;
     background-color: #c7e4fc;
     margin: 10px;
     margin-bottom: 0px;
 }
 
-#webSec{
+#webBackIMG{
     background-image: url(shooterbackground.jpeg);
+    height:1000px;
 }
 
-#webGame{
-    margin-top: 30px;
-    text-align: center;
+#webSec{
+    
+    display: flex;
+    width:1000px;
+    justify-content: flex-start;
+    flex-flow: row ;  
+    margin: auto;
+}
 
-    flex-flow: row wrap;    
+#gameInstruction{
+    margin-top:300px;
+    height:300px;
+    border: 3px solid black;
+    flex: 1;
+    background-color: white;
+    padding-left: 15px;
+}
+
+#highScore{
+    margin-top: 100px;
+    height:300px;
+    border: 3px solid black;
+    flex: 1;
+    background-color: white;
+    padding-left: 15px;
+    margin-left: 0;
+}
+
+
+#webGame{
+    margin-top: 30px;   
+    flex: 3;
+
+}
+
+#shooterGame{
+    padding: 0 auto;
 }
 
 #webgame h1{
@@ -77,8 +106,15 @@ header nav button{
 #shooterGame{
     background-color: white;
     opacity: 0.8;
-    margin: auto;
+    right: 50%;
+    z-index: 0;
+    align-items: center;
     border: 3px solid azure;
     padding: 1px;
 
+}
+
+#aboutSec{
+    width: 60%;
+    margin: auto;
 }
