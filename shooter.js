@@ -26,6 +26,7 @@ window.onload = function init() {
     w = canvas.width;
     h = canvas.height;
     ctx = canvas.getContext('2d');
+    canvas.tabIndex=1;
     currentGameState = gameStateEnum.HOME_SCREEN;
 
     gameInitialize();
@@ -101,11 +102,17 @@ function gameInitialize(){
             console.log("zToggle = " +inputStates.zToggle+" ");
         }
         
-        else if (event.keyCode === 32) {
+        //only allows game restart in gameover screen
+        else if (event.keyCode === 32 && currentGameState === gameStateEnum.GAME_OVER) {
           //inputStates.space = true;
             gameReset();
         }
-      }, false);
+
+        //prevents window from scrolling when controlling game
+        event.preventDefault();
+        return false;
+
+      });
 
     window.addEventListener('keyup', function(event){
         if (event.keyCode === 37) {
@@ -124,7 +131,12 @@ function gameInitialize(){
           //inputStates.space = false;
           currentGameState = gameStateEnum.RUNNING;
         }
-      }, false);
+
+        //prevents window from scrolling when controlling game
+        event.preventDefault();
+        return false;
+
+      });
 
       
 }

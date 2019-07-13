@@ -14,6 +14,9 @@ body{
     
 }
 
+#spaceHolder{
+    height: 400px;
+}
 a:link{
     text-decoration: none;
     background-color: beige;
