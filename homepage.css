@@ -14,20 +14,62 @@ body{
     
 }
 
+#gameBackImg{
+    background: url('gamepageBack2.PNG') top right no-repeat;
+    width: 1200px;
+    height: 1500px;
+    position: absolute;
+    left: 350px;
+    top: 70px;
+    
+
+
+}
+
+#gameBackImg, #leftsideDecor, #rightsideDecor{
+    z-index:-1;
+}
+
+
+#leftsideDecor{
+    background: url('leftsideImg.PNG') top left no-repeat;
+    width: 350px;
+    height: 1440px;
+    position: absolute;
+    left: 0px;
+    top: 150px;
+    box-shadow: -25px 25px 50px 0 white inset, -50px 75px 50px 0 white inset;
+}
+
+
+#rightsideDecor{
+    background: url('rightsideImg.PNG') top right no-repeat;
+    width: 400px;
+    height: 1440px;
+    position: absolute;
+    right: 0px;
+    top: 150px;
+    box-shadow: 25px 50px 75px 0 white inset, 50px -75px 50px 0 white inset;
+
+}
+
+
 #spaceHolder{
     height: 400px;
 }
 a:link{
     text-decoration: none;
-    background-color: beige;
+    background-color: none;
 }
 
 header{
     text-align: center;    
     background-color: #cfe9ff;
-    opacity: 0.8;
-    margin-top: 0px;
+    margin-top: -10px;
+    margin-right: -10px;
     min-width: 1000px;
+    box-shadow: 25px -25px 50px 0 white inset, 25px -25px 50px 0 white inset;
+     
 
 }
 
@@ -51,9 +93,11 @@ header nav button{
     font-size: 20px;
     flex: 1;
     border: 0px;
-    background-color: #c7e4fc;
+    background-color: transparent;
     margin: 10px;
     margin-bottom: 0px;
+    
+    
 }
 
 #webBackIMG{
@@ -66,7 +110,7 @@ header nav button{
     display: flex;
     width:1000px;
     justify-content: flex-start;
-    flex-flow: row ;  
+    flex-flow: row;  
     margin: auto;
 }
 
@@ -77,6 +121,7 @@ header nav button{
     flex: 1;
     background-color: white;
     padding-left: 15px;
+    padding-right: 10px;
 }
 
 #highScore{
@@ -87,6 +132,7 @@ header nav button{
     background-color: white;
     padding-left: 15px;
     margin-left: 0;
+    line-height: 1.5em;
 }
 
 
@@ -112,12 +158,168 @@ header nav button{
     right: 50%;
     z-index: 0;
     align-items: center;
-    border: 3px solid azure;
+    border: 1px solid black;
     padding: 1px;
 
 }
 
-#aboutSec{
-    width: 60%;
+#webInfo{
+    display: flex;
+    width:600px;
+    justify-content: flex-start;
+    flex-flow: row;  
     margin: auto;
+    margin-bottom: 50px;
 }
+
+#webInfo p{
+    margin-top: 20px;
+    line-height: 1.5em;
+}
+
+#aboutSec{
+    width: 800px;
+    margin: auto;
+
+}
+
+#goal h2{
+    background-color: #45d7f5;
+}
+
+h2{
+    letter-spacing: 2px;
+    /*text-shadow:1px 2px azure;*/
+    line-height: 1.5em;
+    padding-left: 10px;
+}
+
+#education h2{
+    background-color: #f57d99;
+}
+
+#w3cxSection, #sfuSection{
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 30px;
+}
+
+#education hr{
+    border-width: 2px, solid, black;
+}
+
+#w3cxSection div{
+    flex: 1;
+    width: 400px;
+}
+
+#w3cxSection img{
+    flex: 1;
+    width: 300px;
+}
+
+#sfuSection div{
+    flex: 1;
+    width: 400px;
+}
+
+#sfuSection img{
+    flex: 1;
+    width: 300px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+#sfuLogoLink{
+    background-color: none;
+}
+
+#experience h2{
+    background-color: #5ab2e8;
+}
+
+#flexContainerAC{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#flexContainerAC ul{
+    margin-top: 30px;
+    padding-top: 20px;
+    flex: 1;
+    min-width: 400px;
+    vertical-align: center;
+    list-style-type: none;
+    line-height: 20px;
+    background-color: #d5e7f2;
+    height: 280px;
+
+}
+
+#flexContainerAC ul li{
+    margin-bottom: 30px;
+   
+}
+
+#flexContainerAC img{
+    margin-top: 30px;
+    flex: 1;
+    width: 200px;
+    height: 300px;
+}
+
+#experience h3{
+    margin-top: 30px;
+}
+
+#flexContainerCHHM{
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 50px;
+}
+
+#flexContainerCHHM ul{
+    margin-top: 30px;
+    padding-top: 20px;
+    flex: 1;
+    min-width: 400px;
+    vertical-align: center;
+    list-style-type: none;
+    line-height: 20px;
+    background-color: #edd1e3;
+    height: 280px;
+
+}
+
+#flexContainerCHHM img{
+    margin-top: 30px;
+    flex: 1;
+    width: 200px;
+    height: 300px;
+}
+
+#flexContainerCHHM ul li{
+    margin-bottom: 20px;
+    margin-right: 10px;
+   
+}
+
+footer {
+    padding: 5px 5px;
+    background: #a5e6f0;
+    color: #004712;
+    text-align: center;
+  }
+  
+  
+  /* The sticky class is added to the header with JS when it reaches its scroll position */
+ #stickyFooter {
+    position: fixed;
+    bottom: 5px;
+    right: 0;
+    width: 20%;
+    margin-left: 20%;
+    border: 2px solid black;
+    
+  }
+  

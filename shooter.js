@@ -457,7 +457,7 @@ function displayStats(){
 
     ctx.font = "10px Arial";
     ctx.fillText("Score:  " + playerScore + " ", 480, 20);
-    ctx.fillText("Toggle Z for shooting, hold SHIFT for precise movement", 20, 20);
+    
 
     ctx.restore();
 }
