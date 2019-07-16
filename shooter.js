@@ -435,8 +435,8 @@ function gameHomescreen(){
 function gameOverscreen(){
     clearCanvas();
     ctx.font = "30px Arial";
-    ctx.fillText("Game Over", 200, 200);
-    ctx.fillText("Score:  " + playerScore + " ", 200, 300)
+    ctx.fillText("Game Over", 220, 200);
+    ctx.fillText("Score:  " + playerScore + " ", 230, 300)
     ctx.fillText("Press spacebar to restart", 130, 400);
     requestAnimationFrame(mainLoop);
 }
