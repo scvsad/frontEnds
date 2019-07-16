@@ -14,6 +14,10 @@ body{
     
 }
 
+button:hover{
+    background-color: beige;
+}
+
 #gameBackImg{
     background: url('gamepageBack.PNG') top right no-repeat;
     width: 1200px;
@@ -21,9 +25,6 @@ body{
     position: absolute;
     left: 350px;
     top: 70px;
-    
-
-
 }
 
 #gameBackImg, #leftsideDecor, #rightsideDecor{
