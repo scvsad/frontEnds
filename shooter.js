@@ -188,12 +188,6 @@ function drawPlayer(playerX, playerY) {
 function createEnemy(mapPosition){
     //create enemy object every set interval). calls functions to creat specific enemy. this function only act as mapPostion activated callers
     //creep(type, creepX, creepY, creepR, creepSpeedX, creepSpeedY, alive)
-    /*if (mapPosition%500==1){
-        var creeper= new creep('dumb', 300, 0, 10, 0, 2, true);
-        enemyArray.push(creeper);
-        console.log(enemyArray);
-    }
-    */
 
    createEnemyBullet(enemyArray, mapPosition);
 
@@ -204,21 +198,25 @@ function createEnemy(mapPosition){
         enemyArray.push(creeper);
     }
 
-    /*
-    if (mapPosition%500==1){
-        var creeper= new creep('simpleShooter', 250, 0, 7, 0, 0, true);
-        enemyArray.push(creeper);
-        var creeper= new creep('simpleShooter', 300, 0, 7, 0, 0, true);
-        enemyArray.push(creeper);
-    }
-    */
    
     if (mapPosition%700==1){
         var creeper= new creep('dumb', 250, 0, 8, 1, 2, true);
         enemyArray.push(creeper);
         var creeper= new creep('dumb', 300, 0, 8, -1, 2, true);
         enemyArray.push(creeper);
+        var creeper= new creep('dumb', 400, 0, 8, -1, 2, true);
+        enemyArray.push(creeper);
+        var creeper= new creep('dumb', 450, 0, 8, -1, 2, true);
+        enemyArray.push(creeper);
 
+    }
+
+    if (mapPosition%300==1){
+        var creeper= new creep('sinMelee', 200, 0, 8, 1, 2, true);
+        enemyArray.push(creeper);
+
+        var creeper= new creep('sinMelee', 400, 0, 8, -1, 2, true);
+        enemyArray.push(creeper);
     }
 
 
@@ -239,18 +237,124 @@ function createEnemy(mapPosition){
     }
 
 
+    if (mapPosition%100==1){
+        var creeper= new creep('sinShooter', 100, 0, 4, 1, 2, true);
+        enemyArray.push(creeper);
+        var creeper= new creep('sinShooter', 500, 0, 4, -1, 2, true);
+        enemyArray.push(creeper);
+    }
+
+
+}
+
+
+function enemyMove(enemyI){
+
+    if (enemyI.type== "dumb"){
+        enemyI.creepX += enemyI.creepSpeedX;
+        enemyI.creepY += enemyI.creepSpeedY;
+        return;
+    }
+
+    if (enemyI.type== "simpleShooter"){
+        enemyI.creepX += enemyI.creepSpeedX;
+        enemyI.creepY += enemyI.creepSpeedY;
+        return;
+    }
+
+    if (enemyI.type== "sinMelee"){
+        enemyI.creepX += Math.sin(mapPosition/10)*6 *enemyI.creepSpeedX;
+        enemyI.creepY += enemyI.creepSpeedY;
+        return;
+    }
+
+
+    if (enemyI.type== "sinShooter"){
+        enemyI.creepX += Math.sin(mapPosition/10)*6 *enemyI.creepSpeedX;
+        enemyI.creepY += enemyI.creepSpeedY;
+        return;
+    }
+
+}
+
+
+
+
+class isoBullet{
+
+    constructor(enemyArrayI){
+
+        if (enemyArrayI.type == "simpleShooter"){ //straight down bullets
+            this.posX= enemyArrayI.creepX;
+            this.posY= enemyArrayI.creepY;
+            this.spdX = 0;
+            this.spdY = 10;
+            this.r = 5;
+        }
     
+        else if (enemyArrayI.type == "dumb"){
+            this.posX= 0;
+            this.posY= 0;
+            this.spdX = 0;
+            this.spdY = 0;
+            this.r = 0;
+        }
 
-    /*
-    if (mapPosition %100==1){
 
-        for (let i=0; i<enemyArray.length; i++){
-            enemyArray[i].addBullet();
+        if (enemyArrayI.type == "sinShooter"){ //straight down bullets
+            this.posX= enemyArrayI.creepX;
+            this.posY= enemyArrayI.creepY;
+            this.spdX = 0;
+            this.spdY = 5;
+            this.r = 4;
+        }
+
+    
+        }
+
+}
+
+
+
+function createEnemyBullet(enemyArray, mapPosition){
+    for (let i=0; i<enemyArray.length; i++){
+        
+        if (enemyArray[i].type == "simpleShooter" && mapPosition%50==1){
+            var oneEnemyBullet = new isoBullet(enemyArray[i]);
+            isoEnemyBullets.push(oneEnemyBullet);
+        }
+
+        if (enemyArray[i].type == "sinShooter" && mapPosition%70==1){
+            var oneEnemyBullet = new isoBullet(enemyArray[i]);
+            isoEnemyBullets.push(oneEnemyBullet);
         }
 
     }
-    */
+
 }
+
+
+function enemyUpdates(enemyArray){
+    //enemy position and bullet position updates
+
+    for (let i=0; i<enemyArray.length; i++){
+        enemyMove(enemyArray[i]);   //updated isolated move function;
+        //enemyArray[i].move();
+        //enemy bulets position updates, and creation?
+        //for (let j=0; j)
+    }
+    
+    if(isoEnemyBullets.length>0){
+        for (let j=0; j<isoEnemyBullets.length; j++){
+            isoEnemyBullets[j].posX += isoEnemyBullets[j].spdX;
+            isoEnemyBullets[j].posY += isoEnemyBullets[j].spdY;
+
+        }
+    }
+
+}
+
+
 
 class creep{
     //template for creep creation
@@ -284,48 +388,7 @@ class creep{
         */
     }
 
-    move() {
-        if (this.type =="simpleShooter"){
-            this.creepX += this.creepSpeedX;
-            this.creepY += this.creepSpeedY;
-            return;
-        }
 
-        if(this.type == "dumb"){
-            this.dumbMove();
-            return;
-        }
-        if(this.type = "b"){
-           // bTypeMove();
-           return;
-        }
-    }
-    
-    dumbMove(){
-        this.creepX += parseInt(Math.sin(mapPosition/30));
-        this.creepY += this.creepSpeedY;
-    }
-
-    
-
-
-}
-
-class creepBullet{
-    constructor(bulletType){
-
-        if (bulletType == 'dumb'){
-            this.spdX=0;
-            this.spdY=0;
-        }
-
-        if (bulletType == 'simpleShooter'){
-            this.spdX=0;
-            this.spdY=5;
-        }
-
-        //more types
-}
 }
 
 
@@ -549,92 +612,3 @@ function drawBullet(bulletArray){
     }
 }
 
-class enemyBullet{
-
-    constructor(enemyArrayI){
-
-    if (enemyArrayI.type == "simpleShooter"){ //straight down bullets
-        this.posX= enemyArrayI.creepX;
-        this.posY= enemyArrayI.creepY;
-        this.spdX = 0;
-        this.spdY = 10;
-        this.r = 5;
-    }
-
-    else if (enemyArrayI.type == "dumb"){
-        this.posX= 0;
-        this.posY= 0;
-        this.spdX = 0;
-        this.spdY = 0;
-        this.r = 0;
-    }
-
-    }
-
-}
-
-class isoBullet{
-
-    constructor(enemyArrayI){
-
-        if (enemyArrayI.type == "simpleShooter"){ //straight down bullets
-            this.posX= enemyArrayI.creepX;
-            this.posY= enemyArrayI.creepY;
-            this.spdX = 0;
-            this.spdY = 10;
-            this.r = 5;
-        }
-    
-        else if (enemyArrayI.type == "dumb"){
-            this.posX= 0;
-            this.posY= 0;
-            this.spdX = 0;
-            this.spdY = 0;
-            this.r = 0;
-        }
-    
-        }
-
-}
-
-
-
-function createEnemyBullet(enemyArray, mapPosition){
-    for (let i=0; i<enemyArray.length; i++){
-        if (enemyArray[i].type == "simpleShooter" && mapPosition%50==1){
-            var oneEnemyBullet = new isoBullet(enemyArray[i]);
-            isoEnemyBullets.push(oneEnemyBullet);
-
-        }
-
-    }
-
-}
-
-
-function enemyUpdates(enemyArray){
-    //enemy position and bullet position updates
-    for (let i=0; i<enemyArray.length; i++){
-        enemyArray[i].move();
-        //enemy bulets position updates, and creation?
-        //for (let j=0; j)
-    }
-    
-    if(isoEnemyBullets.length>0){
-        for (let j=0; j<isoEnemyBullets.length; j++){
-            isoEnemyBullets[j].posX += isoEnemyBullets[j].spdX;
-            isoEnemyBullets[j].posY += isoEnemyBullets[j].spdY;
-
-        }
-    }
-
-
-
-
-    /*
-    for (let i=0; i<enemyArray.length; i++){
-        enemyArray[i].creepX = enemyArray[i].creepX + enemyArray[i].creepSpeedX;
-        enemyArray[i].creepY = enemyArray[i].creepY + enemyArray[i].creepSpeedY;
-    }
-    */
-}
