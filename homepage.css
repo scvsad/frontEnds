@@ -11,27 +11,18 @@ html{
 
 body{
     font-family: helvetica, sans-serif;
+    background-color: darkslategray;
     
 }
 
 button:hover{
-    background-color: beige;
-}
-
-#gameBackImg{
-    background: url('gamepageBack.png') top right no-repeat;
-    width: 1200px;
-    height: 1500px;
-    position: absolute;
-    left: 350px;
-    top: 70px;
-}
-
-#gameBackImg, #leftsideDecor, #rightsideDecor{
-    z-index:-1;
+    background-color: lightslategray;
 }
 
 
+
+
+/*
 #leftsideDecor{
     background: url('leftsideImg.PNG') top left no-repeat;
     width: 350px;
@@ -41,7 +32,6 @@ button:hover{
     top: 150px;
     box-shadow: -25px 25px 50px 0 white inset, -50px 75px 50px 0 white inset;
 }
-
 
 #rightsideDecor{
     background: url('rightsideImg.PNG') top right no-repeat;
@@ -54,33 +44,52 @@ button:hover{
 
 }
 
+#gameBackImg, #leftsideDecor, #rightsideDecor{
+    z-index:-1;
+}
+
+#gameBackImg{
+    background: url('gamepageBack.png') top right no-repeat;
+    width: 1200px;
+    height: 1500px;
+    position: absolute;
+    left: 350px;
+    top: 70px;
+}
+
+#webBackIMG{
+    background-image: url(shooterbackground.jpeg);
+    height:1000px;
+}
+
+*/
 
 #spaceHolder{
     height: 400px;
 }
+
 a:link{
     text-decoration: none;
     background-color: none;
 }
 
 header{
+    position: fixed;
+    top: 0px;
+    z-index: 1;
     text-align: center;    
-    background-color: #cfe9ff;
-    margin-top: -10px;
-    margin-right: -10px;
-    min-width: 1000px;
-    box-shadow: 25px -25px 50px 0 white inset, 25px -25px 50px 0 white inset;
-     
-
+    color: lightgrey;
+    background-color: darkslategray;
+    width: 80%;
+    margin-left: 10%;
+    
+    /*box-shadow: 25px -25px 50px 0 white inset, 25px -25px 50px 0 white inset;*/
 }
 
 header h1{
-    
     margin-top: 10px;
     opacity: 1;
-    
     white-space: nowrap;
-    
 }
 
 header nav{
@@ -92,27 +101,23 @@ header nav{
 
 header nav button{
     font-size: 20px;
+    color: lightgrey;
     flex: 1;
     border: 0px;
     background-color: transparent;
     margin: 10px;
     margin-bottom: 0px;
-    
-    
+    padding-bottom: 10px;
 }
 
-#webBackIMG{
-    background-image: url(shooterbackground.jpeg);
-    height:1000px;
-}
 
 #webSec{
-    
     display: flex;
-    width:1000px;
+    width: 1000px;
     justify-content: flex-start;
     flex-flow: row;  
     margin: auto;
+    margin-top: 100px;
 }
 
 #gameInstruction{
@@ -179,12 +184,12 @@ header nav button{
 }
 
 #aboutSec{
-    width: 800px;
-    margin: auto;
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 100px;
     padding: 80px 80px 80px;
-    background-color: white;
+    background-color: lightslategray;
     opacity: 0.9;
-
 }
 
 #goal h2{
@@ -247,7 +252,7 @@ h2{
     flex-flow: row wrap;
 }
 
-#flexContainerAC ul{
+/* #flexContainerAC ul{
     margin-top: 30px;
     padding-top: 20px;
     flex: 1;
@@ -258,10 +263,10 @@ h2{
     background-color: #d5e7f2;
     height: 280px;
 
-}
+} */
 
 #flexContainerAC ul li{
-    margin-bottom: 30px;
+    margin-bottom: 10px;
    
 }
 
@@ -282,7 +287,7 @@ h2{
     margin-bottom: 50px;
 }
 
-#flexContainerCHHM ul{
+/* #flexContainerCHHM ul{
     margin-top: 30px;
     padding-top: 20px;
     flex: 1;
@@ -293,7 +298,7 @@ h2{
     background-color: #edd1e3;
     height: 280px;
 
-}
+} */
 
 #flexContainerCHHM img{
     margin-top: 30px;
@@ -303,7 +308,7 @@ h2{
 }
 
 #flexContainerCHHM ul li{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-right: 10px;
    
 }
@@ -320,10 +325,10 @@ footer {
  #stickyFooter {
     position: fixed;
     bottom: 5px;
-    right: 0;
+    right: 0px;
     width: 20%;
     margin-left: 20%;
-    border: 2px solid black;
+    /*border: 2px solid black;*/
     
   }
   
